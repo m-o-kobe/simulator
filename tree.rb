@@ -37,13 +37,18 @@ class Tree
 			@mysize+=@settings.spdata( @sp , "growth1" ) +@settings.spdata( @sp , "growth2" )*@mysize+@settings.spdata(@sp,"growth3")*@kabu+@settings.spdata(@sp,"growth4")*@crd
 			@age += 1
 		end
-
+		
+		
+#変えるとしたらここらへん
 	def reproduction
-		num_juvs = ( resource / ( @settings.spdata( @sp , "rep" ).to_f ) ).to_i#@mysize/spdata[rep]でその木が産出する種子の数？
+		num_juvs = ( resource / ( @settings.spdata( @sp , "rep" ).to_f ) ).to_i
+		#@mysize/spdata[rep]でその木が産出する種子の数？
 
 		seeds = Array.new
 		
 		for i in 0..(num_juvs-1)
+			
+		
 			seeds.push( 
 				Tree.new(
 					@x + ( (rand(0.0..1.0) -0.5)* @settings.spdata( @sp , "disp" ) ).to_i,#元の木の周りに分布
@@ -69,6 +74,15 @@ class Tree
 		return seisi>seizonritu
 		#return @age > 15 #@settings.spdata( @sp , "death" ) #settingのdeathをageが超えたらtrue
 	end
+	def seed_dead
+		kanyu=rand(0.0..1.0)
+		kanyuritu=1/(1+Math::exp(-@settings.spdata(@sp,"kanyu1")-@settings.spdata(@sp,"kanyu2")*@mysize-@settings.spdata(@sp,"kanyu3")*@kabu-@settings.spdata(@sp,"kanyu4")*@crd))**(1.0/3.0)
+		#上の式は見直したほうがいい.特に最後の3で割るとことか
+		return kanyu>kanyuritu
+		
+	end
+
+
 
 	def record
 		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@kabu ] 

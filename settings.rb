@@ -3,7 +3,7 @@ RES_CONST = 1.0
 
 ########## 種の持つパラメータ
 def params
-	return ["growth1","growth2","growth3","growth4","death1","death2","death3","death4", "rep", "disp", "juvdeath"]
+	return ["growth1","growth2","growth3","growth4","death1","death2","death3","death4","kanyu1","kanyu2","kanyu3","kanyu4", "rep", "disp", "juvdeath"]
 end
 
 

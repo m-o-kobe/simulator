@@ -15,6 +15,11 @@
 "sp_1_death2", 0
 "sp_1_death3", 0.021695
 "sp_1_death4", 0.049199
+"sp_1_kanyu1",0
+"sp_1_kanyu2",0
+"sp_1_kanyu3",0
+"sp_1_kanyu4",0
+
 "sp_1_rep", 2
 "sp_1_disp", 30
 "sp_1_juvdeath", 20
@@ -28,6 +33,11 @@
 "sp_2_death2", -0.0748115
 "sp_2_death3", 0.0003945
 "sp_2_death4", 0
+"sp_2_kanyu1",0
+"sp_2_kanyu2",0
+"sp_2_kanyu3",0
+"sp_2_kanyu4",0
+
 "sp_2_rep", 2
 "sp_2_disp", 30
 "sp_2_juvdeath", 20
@@ -41,6 +51,11 @@
 "sp_3_death2", 0
 "sp_3_death3", 0
 "sp_3_death4", 0
+"sp_3_kanyu1",0
+"sp_3_kanyu2",0
+"sp_3_kanyu3",0
+"sp_3_kanyu4",0
+
 "sp_3_rep", 2
 "sp_3_disp", 30
 "sp_3_juvdeath", 20

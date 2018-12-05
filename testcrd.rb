@@ -10,10 +10,10 @@ forest=Forest.new([
 	[1,1,3,0,10,0],
 	[1,3,3,0,1,0]
 	])
-	p forest
+p forest.trees
 for i in 1..10
-	forest.crdcal
+	forest.crdcal(forest.trees)
 	forest.trees_grow
-	p forest
+
 end
 	 

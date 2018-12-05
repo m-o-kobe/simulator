@@ -3,6 +3,7 @@ require "./tree.rb"
 
 
 class Forest
+	attr_accessor :trees
 	@settings = Settings.new
 	def initialize( init_array )
 		@year = 0
@@ -16,7 +17,7 @@ class Forest
 
 
 	def yearly_activities#成長量･新規･枯死計算
-		crdcal
+		crdcal(@trees)
 		trees_grow#下で定義されてる
 		@trees.concat( newborn )#配列treesの末尾に引数の配列newbornを結合
 		tree_death#下で定義されてる
@@ -44,19 +45,23 @@ class Forest
 		end
 	end
 
-		def newborn
+	def newborn
 		juvs = Array.new
 		@trees.each do | tree |
 			juvs.concat( tree.reproduction )
 		end
-		return juvs.delete_if{|x| x == [] }
+		crdcal(juvs)
+		juvs.delete_if{|x| x.seed_dead}
+		return juvs.delete_if
 	end
 
 	def tree_death
 		@trees.delete_if{|x| x.is_dead }#死んだらその木を消す
 	end
-	def crdcal
-		@trees.each do |tar|
+	
+	#crd,距離ごとにもう少し細かく分けないと加入率計算ができない.
+	def crdcal(trees)
+		trees.each do |tar|
 			tar.crd=0.0
 			tar.kabu=0.0
 			@trees.each do | obj |#treesのデータがobjに格納された上で以下の処理を繰り返す
