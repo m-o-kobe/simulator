@@ -1,0 +1,17 @@
+#######################
+#### Common settings
+"plot_x", 10000
+"plot_y", 10000
+"duration", 5
+"num_sp", 1
+
+#######################
+### Sp1 settings
+"sp_1_growth1", 1.5
+"sp_1_growth2", -0.04
+"sp_1_death1", 0.0
+"sp_1_death2", 0.5
+"sp_1_rep", 2
+"sp_1_disp", 30
+"sp_1_juvdeath", 20
+

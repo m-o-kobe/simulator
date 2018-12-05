@@ -1,0 +1,46 @@
+#######################
+#### Common settings
+"plot_x", 10000
+"plot_y", 10000
+"duration", 5
+"num_sp", 3
+
+#######################
+### Sp1 settings(lc)
+"sp_1_growth1",0.3010400
+"sp_1_growth2",-0.0049630
+"sp_1_growth3",-0.0009202
+"sp_1_growth4",-0.0014941
+"sp_1_death1", -1.713938
+"sp_1_death2", 0
+"sp_1_death3", 0.021695
+"sp_1_death4", 0.049199
+"sp_1_rep", 2
+"sp_1_disp", 30
+"sp_1_juvdeath", 20
+
+### Sp2 settings(bp)
+"sp_2_growth1",0.08482
+"sp_2_growth2",0.001577
+"sp_2_growth3",0.000006833
+"sp_2_growth4",0
+"sp_2_death1", 2.4876283
+"sp_2_death2", -0.0748115
+"sp_2_death3", 0.0003945
+"sp_2_death4", 0
+"sp_2_rep", 2
+"sp_2_disp", 30
+"sp_2_juvdeath", 20
+
+### Sp3 settings(pt)
+"sp_3_growth1",0.15753
+"sp_3_growth2",0
+"sp_3_growth3",0
+"sp_3_growth4",0
+"sp_3_death1", 3.012261576
+"sp_3_death2", 0
+"sp_3_death3", 0
+"sp_3_death4", 0
+"sp_3_rep", 2
+"sp_3_disp", 30
+"sp_3_juvdeath", 20
