@@ -76,8 +76,11 @@ class Tree
 	end
 	def seed_dead
 		kanyu=rand(0.0..1.0)
-		kanyuritu=1/(1+Math::exp(-@settings.spdata(@sp,"kanyu1")-@settings.spdata(@sp,"kanyu2")*@mysize-@settings.spdata(@sp,"kanyu3")*@kabu-@settings.spdata(@sp,"kanyu4")*@crd))**(1.0/3.0)
+		
+		kanyuritu=1/(1+Math::exp(-@settings.spdata(@sp,"kanyu1")-@settings.spdata(@sp,"kanyu2")*@mysize-@settings.spdata(@sp,"kanyu3")*@kabu-@settings.spdata(@sp,"kanyu4")*@crd))
 		#上の式は見直したほうがいい.特に最後の3で割るとことか
+		p "kanyu="+kanyu.to_s
+		p "kanyuritu="+kanyuritu.to_s
 		return kanyu>kanyuritu
 		
 	end

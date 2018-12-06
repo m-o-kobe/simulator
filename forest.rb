@@ -51,8 +51,10 @@ class Forest
 			juvs.concat( tree.reproduction )
 		end
 		crdcal(juvs)
+		p 'juvs='+juvs.to_s
 		juvs.delete_if{|x| x.seed_dead}
-		return juvs.delete_if
+		p 'ikinokori='+juvs.to_s
+		return juvs
 	end
 
 	def tree_death
