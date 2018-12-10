@@ -52,7 +52,7 @@ class Tree
 			seeds.push( 
 				Tree.new(
 					@x + ( (rand(0.0..1.0) -0.5)* @settings.spdata( @sp , "disp" ) ).to_i,#元の木の周りに分布
-					@y + ( (rand(0.0..1.0) -0.5)* @settings.spdata( @sp , "disp" ) ).to_i,
+					@y + ( (rand(0.0..1.0) -0.5)* @settings.spdata( @sp , "disp" ) ).to_i,#てかこれ座標は全て整数値でいいんか？
 					@sp,
 					0,#age
 					0.1,#size
@@ -90,6 +90,7 @@ class Tree
 	def record
 		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@kabu ] 
 	end
+
 	
 
 	##############################
