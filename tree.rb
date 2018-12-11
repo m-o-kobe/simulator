@@ -58,8 +58,6 @@ class Tree
 					0.1,#size
 					0,#@tag.にしておくと割り振られる
 					@tag#mother木のタグ
-					
-
 				)
 			)
 		end
@@ -70,7 +68,7 @@ class Tree
 
 	def is_dead
 		seisi=rand(0.0..1.0)
-		seizonritu=1/(1+Math::exp(-@settings.spdata(@sp,"death1")-@settings.spdata(@sp,"death2")*@mysize-@settings.spdata(@sp,"death3")*@kabu-@settings.spdata(@sp,"death4")*@crd))**(1.0/3.0)
+		seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death1")-@settings.spdata(@sp,"death2")*@mysize-@settings.spdata(@sp,"death3")*@kabu-@settings.spdata(@sp,"death4")*@crd)))**(1.0/3.0)
 		return seisi>seizonritu
 		#return @age > 15 #@settings.spdata( @sp , "death" ) #settingのdeathをageが超えたらtrue
 	end

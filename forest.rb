@@ -16,9 +16,10 @@ class Forest
 
 
 	def yearly_activities#成長量･新規･枯死計算
-		crdcal(@trees)
+		crdcal
 		trees_grow#下で定義されてる
-		@trees.concat( newborn )#配列treesの末尾に引数の配列newbornを結合
+#		@trees.concat( newborn )#配列treesの末尾に引数の配列newbornを結合
+		trees_newborn
 		tree_death#下で定義されてる
 		@year += 1
 	end
@@ -64,9 +65,8 @@ class Forest
 			oyakazu=oyagi.count
 			num_newborn=oyakazu*@settings.spdata(spp,"kanyu1")
 			for i in 1..num_newborn.to_i do
-				seeds=Array.new
-				for i in 1..1000 do
-					oya=rand(oyakazu)
+				for j in 1..1000 do
+					oya=rand(oyakazu)-1
 					#親木を選ぶ
 					kyori=rand(0.0..1.0)
 					kaku=rand(0.0..2.0*Math::PI)
@@ -79,20 +79,22 @@ class Forest
 						0,#@tag.にしておくと割り振られる
 						oyagi[oya].tag#mother木のタグ
 						)
-					ds=0
+					ds=0.0
+
 					@trees.each do |obj|
 						_dist =dist(kouhochi, obj)
-						if _dist<@settings.spdata(spp,"kanyu4")
-							if _dist==0
+						if _dist<@settings.spdata(spp,"kanyu4")&&obj.sp!=spp
+							if _dist==0.0
 								ds+=obj.mysize/0.01
 							else
 								ds+=obj.mysize/_dist
 							end
 						end
 					end
+
 					kanyu=rand(0.0..1.0)
-					kanyuritu=1/(1+Math::exp(-@settings.spdata(spp,"kanyu2")-@settings.spdata(spp,"kanyu3")*ds))
-					p kanyu,kanyuritu
+					kanyuritu=1.0/(1.0+Math::exp(-ds*@settings.spdata(spp,"kanyu3")-@settings.spdata(spp,"kanyu2")))
+
 					if kanyu<kanyuritu
 						@trees.push(kouhochi)
 						break
@@ -134,8 +136,8 @@ class Forest
 	
 	#crd,距離ごとにもう少し細かく分けないと加入率計算ができない.
 	
-	def crdcal(trees)
-		trees.each do |tar|
+def crdcal
+		@trees.each do |tar|
 			tar.crd=0.0
 			tar.kabu=0.0
 			@trees.each do | obj |#treesのデータがobjに格納された上で以下の処理を繰り返す

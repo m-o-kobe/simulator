@@ -46,12 +46,7 @@ class Settings
 			params.each do | _target |
 				keyword = "sp_" + i.to_s + "_" + _target
 				if _setdata[ keyword ] != nil
-					if _target.include?("growth")||_target.include?("death")
-						@@spdata[i][_target] = _setdata[ keyword ]#@@spdata[i][_target]にそれぞれ値を格納
-						
-					else
-						@@spdata[i][_target] = _setdata[ keyword ].to_i
-					end
+						@@spdata[i][_target] = _setdata[ keyword ]
 				end
 			end
 		end

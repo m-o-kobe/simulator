@@ -2,22 +2,15 @@ require"./settings.rb"
 require"./simulator.rb"
 require"./forest.rb"
 require"./fileio.rb"
-require 'timeout'
-
 fileio = Fileio.new( "data/testset.csv","data/init.csv","data/output.dat")
-tmp=Settings.new
+tmp=Settings.new()
 tmp.load_file( fileio.read_settings )
 forest=Forest.new([
-	[2,1,1,0,10,0],#[x,y,sp,age,mysize,tag]
-	[1,3,3,0,1,0]
+	[1,1,1,0,10.0,0],
+	[1,3,1,0,1.0,0]
 	])
-p forest
-begin
-  Timeout.timeout(30){
-	forest.trees_newborn
-  }
-rescue Timeout::Error
-  puts "timeout"
-end
-p forest
+	puts forest
 
+	forest.crdcal
+	forest.tree_death
+	puts forest
