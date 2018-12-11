@@ -2,7 +2,7 @@
 #### Common settings
 "plot_x", 10000
 "plot_y", 10000
-"duration", 5
+"duration", 3
 "num_sp", 3
 
 #######################

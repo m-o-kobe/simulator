@@ -8,8 +8,8 @@ fileio = Fileio.new( "data/testset.csv","data/init.csv","data/output.dat")
 tmp=Settings.new
 tmp.load_file( fileio.read_settings )
 forest=Forest.new([
-	[2,1,1,0,10,0],#[x,y,sp,age,mysize,tag]
-	[1,3,3,0,1,0]
+	[2.0,1.0,1,0,10,0],#[x,y,sp,age,mysize,tag]
+	[1.0,3.0,3,0,1,0]
 	])
 p forest
 begin

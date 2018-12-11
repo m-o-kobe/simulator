@@ -1,9 +1,22 @@
-########## 全種共通
-RES_CONST = 1.0
-
 ########## 種の持つパラメータ
 def params
-	return ["growth1","growth2","growth3","growth4","death1","death2","death3","death4","kanyu1","kanyu2","kanyu3","kanyu4", "rep", "disp", "juvdeath"]
+	return [
+		"growth1",#定数
+		"growth2",#dbhに比例
+		"growth3",#kabuに比例
+		"growth4",#crdに比例
+		"death1",#定数
+		"death2",#dbhに比例
+		"death3",#kabuに比例
+		"death4",#crdに比例
+		"kanyu1",#1個体あたりの加入数
+		"kanyu2",#加入率定数
+		"kanyu3",#加入率dsに比例
+		"kanyu4",#dsを計算する距離限界
+		"rep",#いらない？
+		"disp", #いらない？
+		"juvdeath"#いらない？
+		]
 end
 
 
@@ -32,11 +45,11 @@ class Settings
 		end
 
 		if _setdata[ "plot_x" ] != nil
-			@@plot_x = _setdata[ "plot_x" ].to_i
+			@@plot_x = _setdata[ "plot_x" ]
 		end
 
 		if _setdata[ "plot_y" ] != nil
-			@@plot_y = _setdata[ "plot_y" ].to_i
+			@@plot_y = _setdata[ "plot_y" ]
 		end
 
 
