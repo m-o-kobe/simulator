@@ -3,11 +3,21 @@ require "./settings.rb"
 class Tree
 	
 	###############
-	attr_accessor :x, :y, :sp, :age, :mysize,:tag, :mother, :crd,:kabu
-	# Newborn tags: Change if the initial data has >10000 trees
+	attr_accessor :x,
+				:y,
+				:sp,
+				:age, 
+				:mysize,
+				:tag, 
+				:mother,
+				:crd,
+				:kabu,
+				:sprout
+# Newborn tags: Change if the initial data has >10000 trees
 	@@tag = 10001
+	@@sprout=10001
 
-	def initialize( _x, _y, _sp, _age, _mysize, _tag, _mother )
+	def initialize( _x, _y, _sp, _age, _mysize, _tag, _mother,_sprout )
 		@settings = Settings.new
 		@x = _x
 		@y = _y
@@ -25,10 +35,21 @@ class Tree
 			@tag = @@tag
 			@@tag += 1
 		end
+		if _sprout != "newsprout" then
+			@sprout=_sprout
+			
+		else
+			@sprout = @@sprout
+			@@sprout += 1
+		end
+
 	end
 
 	def grow
-		@mysize+=@settings.spdata( @sp , "growth1" ) +@settings.spdata( @sp , "growth2" )*@mysize+@settings.spdata(@sp,"growth3")*@kabu+@settings.spdata(@sp,"growth4")*@crd
+		gro=@settings.spdata( @sp , "growth1" ) +@settings.spdata( @sp , "growth2" )*@mysize+@settings.spdata(@sp,"growth3")*@kabu+@settings.spdata(@sp,"growth4")*@crd
+		if gro>=0 then
+			@mysize+=gro
+		end
 		@age += 1
 	end
 
@@ -40,7 +61,7 @@ class Tree
 
 
 	def record
-		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@kabu ] 
+		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@kabu,@sprout ] 
 	end
 
 	##############################

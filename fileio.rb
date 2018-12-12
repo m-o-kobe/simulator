@@ -7,6 +7,7 @@ INIT_SP 	= 2
 INIT_AGE	= 3
 INIT_SIZE	= 4
 INIT_TAG	= 5
+INIT_SPROUT =6
 
 class Fileio
 
@@ -17,7 +18,15 @@ class Fileio
 	end
 
 	def read_init
-		return @initfile.read.delete_if{|x| x[0]=~/^#/}.collect{|x| [ x[ INIT_X ].to_i, x[ INIT_Y ].to_i, x[ INIT_SP ].to_i, x[ INIT_AGE ].to_i, x[ INIT_SIZE ].to_f, x[ INIT_TAG ].to_i] }
+		return @initfile.read.delete_if{|x| x[0]=~/^#/}.collect{|x| [ 
+			x[ INIT_X ].to_f, 
+			x[ INIT_Y ].to_f, 
+			x[ INIT_SP ].to_i,
+			x[ INIT_AGE ].to_i,
+			x[ INIT_SIZE ].to_f,
+			x[ INIT_TAG ].to_i,
+			x[INIT_SPROUT].to_i
+			]}
 		#x[0]が#で始まっていたら削除.x[init_x]などを整数型に変える処理
 	end
 

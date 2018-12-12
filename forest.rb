@@ -16,7 +16,8 @@ class Forest
 			buf[3],
 			buf[4],
 			buf[5],
-			0
+			0,
+			buf[6]
 			) )#Treeクラスはtree.rbで定義
 		
 		end
@@ -69,40 +70,79 @@ class Forest
 			oyakazu=oyagi.count
 			num_newborn=oyakazu*@settings.spdata(spp,"kanyu1")
 			for i in 1..num_newborn.to_i do
-				for j in 1..1000 do
-					oya=rand(oyakazu)-1
-					#親木を選ぶ
-					kyori=rand(0.0..1.0)
-					kaku=rand(0.0..2.0*Math::PI)
-					kouhox=oyagi[oya].x+kyori*Math.sin(kaku)#@x
-					kouhoy=oyagi[oya].y+kyori*Math.cos(kaku)#@y
-					ds=0.0
-
-					@trees.each do |obj|
-						_dist =((kouhox-obj.x)**2.0+(kouhoy-obj.y)**2.0)**0.5
-						if _dist<@settings.spdata(spp,"kanyu4")&&obj.sp!=spp
-							if _dist==0.0
-								ds+=obj.mysize/0.01
-							else
-								ds+=obj.mysize/_dist
+				if @settings.spdata(spp,"kanyu2")<=rand(0.0..1.0)
+					for j in 1..1000 do
+						oya=rand(oyakazu)-1
+						#親木を選ぶ
+						kyori=rand(0.0..1.0)
+						kaku=rand(0.0..2.0*Math::PI)
+						kouhox=oyagi[oya].x+kyori*Math.sin(kaku)#@x
+						kouhoy=oyagi[oya].y+kyori*Math.cos(kaku)#@y
+						ds=0.0
+	
+						@trees.each do |obj|
+							_dist =((kouhox-obj.x)**2.0+(kouhoy-obj.y)**2.0)**0.5
+							if _dist<@settings.spdata(spp,"kanyu11")&&obj.sp!=spp
+								if _dist==0.0
+									ds+=obj.mysize/0.01
+								else
+									ds+=obj.mysize/_dist
+								end
 							end
 						end
+	
+						kanyu=rand(0.0..1.0)
+						kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu12")-ds*@settings.spdata(spp,"kanyu13")))
+	
+						if kanyu<kanyuritu
+							@trees.push(Tree.new(
+								kouhox,
+								kouhoy,
+								spp,
+								0,#age
+								0.1,#size
+								0,#@tag
+								oyagi[oya].tag,#motherのタグ
+								oyagi[oya].sprout
+								))
+
+							break
+						end
 					end
+				else
+					for j in 1..1000 do
+						kouhox=rand(0.0..@settings.plot_x)
+						kouhoy=rand(0.0..@settings.plot_y)#@y
+						ds=0.0
+	
+						@trees.each do |obj|
+							_dist =((kouhox-obj.x)**2.0+(kouhoy-obj.y)**2.0)**0.5
+							if _dist<@settings.spdata(spp,"kanyu21")&&obj.sp!=spp
+								if _dist==0.0
+									ds+=obj.mysize/0.01
+								else
+									ds+=obj.mysize/_dist
+								end
+							end
+						end
+	
+						kanyu=rand(0.0..1.0)
+						kanyuritu=1.0/(1.0+Math::exp(-ds*@settings.spdata(spp,"kanyu22")-@settings.spdata(spp,"kanyu23")))
+	
+						if kanyu<kanyuritu
+							@trees.push(Tree.new(
+								kouhox,
+								kouhoy,
+								spp,
+								0,#age
+								0.1,#size
+								0,#@tag
+								oyagi[rand(oyakazu)-1].tag,#motherのタグ
+								"newsprout"
+								))
 
-					kanyu=rand(0.0..1.0)
-					kanyuritu=1.0/(1.0+Math::exp(-ds*@settings.spdata(spp,"kanyu3")-@settings.spdata(spp,"kanyu2")))
-
-					if kanyu<kanyuritu
-						@trees.push(Tree.new(
-							kouhox,
-							kouhoy,
-							spp,
-							0,#age
-							0.1,#size
-							0,#@tag
-							oyagi[oya].tag#motherのタグ
-							))
-						break
+							break
+						end
 					end
 				end
 			end

@@ -5,14 +5,23 @@ def params
 		"growth2",#dbhに比例
 		"growth3",#kabuに比例
 		"growth4",#crdに比例
+
 		"death1",#定数
 		"death2",#dbhに比例
 		"death3",#kabuに比例
 		"death4",#crdに比例
+
 		"kanyu1",#1個体あたりの加入数
-		"kanyu2",#加入率定数
-		"kanyu3",#加入率dsに比例
-		"kanyu4",#dsを計算する距離限界
+		"kanyu2",#ランダム散布割合(⇔親木の周りに分布)
+
+		"kanyu11",#dsを計算する距離限界、親木の周りに分布する場合
+		"kanyu12",#定数、親木の周りに分布
+		"kanyu13",#dsに比例、親木の周りに分布
+
+		"kanyu21",#dsを計算する距離限界、ランダム
+		"kanyu22",#定数、ランダム
+		"kanyu23",#dsに比例、ランダム
+
 		"rep",#いらない？
 		"disp", #いらない？
 		"juvdeath"#いらない？
