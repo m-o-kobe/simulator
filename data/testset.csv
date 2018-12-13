@@ -25,6 +25,7 @@
 "sp_1_kanyu1",0.026502307
 "sp_1_kanyu2",0
 "sp_1_kanyu3",0
+"sp_1_kanyu4",1.0
 
 "sp_1_kanyu11",3
 "sp_1_kanyu12",-2.30063
@@ -61,6 +62,8 @@
 "sp_2_kanyu1",0.02174591
 "sp_2_kanyu2",0.5
 "sp_2_kanyu3",10
+"sp_2_kanyu4",0
+
 
 "sp_2_kanyu11",0
 "sp_2_kanyu12",0
@@ -99,6 +102,7 @@
 "sp_3_kanyu1",0.062658569
 "sp_3_kanyu2",0
 "sp_3_kanyu3",10
+"sp_3_kanyu4",1.0
 
 
 "sp_3_kanyu11",0
