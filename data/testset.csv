@@ -8,15 +8,15 @@
 
 #######################
 ### Sp1 settings(lc)
-"sp_1_growth1",0.3010400
-"sp_1_growth2",-0.0049630
-"sp_1_growth3",-0.0009202
-"sp_1_growth4",-0.0014941
+"sp_1_growth1",0.8831486
+"sp_1_growth2",-0.0157003
+"sp_1_growth3",0
+"sp_1_growth4",-0.0039146
 
-"sp_1_death11", -1.713938
+"sp_1_death11", -1.626365
 "sp_1_death12", 0
-"sp_1_death13", 0.021695
-"sp_1_death14", 0.049199
+"sp_1_death13", 0.045905
+"sp_1_death14",
 
 "sp_1_death21", 0
 "sp_1_death22", 0
