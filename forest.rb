@@ -36,7 +36,6 @@ class Forest
 			fire
 			crdcal
 		else
-			#下で定義されてる
 			trees_newborn
 			tree_death
 		end

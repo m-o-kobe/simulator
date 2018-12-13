@@ -28,14 +28,6 @@ def params
 		"kanyu21",#dsを計算する距離限界、ランダム
 		"kanyu22",#定数、ランダム
 		"kanyu23",#dsに比例、ランダム
-
-		# "kanyu31",#dsを計算する距離限界、山火事後
-		# "kanyu32",#定数、山火事後
-		# "kanyu33",#dsに比例、山火事後
-
-		# "rep",#いらない？
-		# "disp", #いらない？
-		# "juvdeath"#いらない？
 		]
 end
 
