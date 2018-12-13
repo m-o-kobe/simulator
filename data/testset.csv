@@ -2,7 +2,7 @@
 #### Common settings
 "plot_x", 50
 "plot_y", 100
-"duration", 3
+"duration", 10
 "num_sp", 3
 
 #######################
@@ -11,13 +11,20 @@
 "sp_1_growth2",-0.0049630
 "sp_1_growth3",-0.0009202
 "sp_1_growth4",-0.0014941
-"sp_1_death1", -1.713938
-"sp_1_death2", 0
-"sp_1_death3", 0.021695
-"sp_1_death4", 0.049199
+
+"sp_1_death11", -1.713938
+"sp_1_death12", 0
+"sp_1_death13", 0.021695
+"sp_1_death14", 0.049199
+
+"sp_1_death21", 0
+"sp_1_death22", 0
+"sp_1_death23", 0
+"sp_1_death24", 0
 
 "sp_1_kanyu1",0.026502307
 "sp_1_kanyu2",0
+"sp_1_kanyu3",0
 
 "sp_1_kanyu11",3
 "sp_1_kanyu12",-2.30063
@@ -26,6 +33,10 @@
 "sp_1_kanyu21",0
 "sp_1_kanyu22",0
 "sp_1_kanyu23",0
+
+"sp_1_kanyu31",0
+"sp_1_kanyu32",0
+"sp_1_kanyu33",0
 
 "sp_1_rep", 2
 "sp_1_disp", 30
@@ -36,13 +47,20 @@
 "sp_2_growth2",0.001577
 "sp_2_growth3",0.000006833
 "sp_2_growth4",0
-"sp_2_death1", 2.4876283
-"sp_2_death2", -0.0748115
-"sp_2_death3", 0.0003945
-"sp_2_death4", 0
+
+"sp_2_death11", 2.4876283
+"sp_2_death12", -0.0748115
+"sp_2_death13", 0.0003945
+"sp_2_death14", 0
+
+"sp_2_death21", 0
+"sp_2_death22", 0
+"sp_2_death23", 0
+"sp_2_death24", 0
 
 "sp_2_kanyu1",0.02174591
 "sp_2_kanyu2",0.5
+"sp_2_kanyu3",10
 
 "sp_2_kanyu11",0
 "sp_2_kanyu12",0
@@ -51,6 +69,10 @@
 "sp_2_kanyu21",0
 "sp_2_kanyu22",0
 "sp_2_kanyu23",0
+
+"sp_2_kanyu31",0
+"sp_2_kanyu32",0
+"sp_2_kanyu33",0
 
 
 "sp_2_rep", 2
@@ -62,14 +84,22 @@
 "sp_3_growth2",0
 "sp_3_growth3",0
 "sp_3_growth4",0
-"sp_3_death1", 3.012261576
-"sp_3_death2", 0
-"sp_3_death3", 0
-"sp_3_death4", 0
 
+"sp_3_death11", 3.012261576
+"sp_3_death12", 0
+"sp_3_death13", 0
+"sp_3_death14", 0
+
+
+"sp_3_death21", 0
+"sp_3_death22", 0
+"sp_3_death23", 0
+"sp_3_death24", 0
 
 "sp_3_kanyu1",0.062658569
 "sp_3_kanyu2",0
+"sp_3_kanyu3",10
+
 
 "sp_3_kanyu11",0
 "sp_3_kanyu12",100
@@ -78,6 +108,10 @@
 "sp_3_kanyu21",0
 "sp_3_kanyu22",0
 "sp_3_kanyu23",0
+
+"sp_3_kanyu31",0
+"sp_3_kanyu32",0
+"sp_3_kanyu33",0
 
 "sp_3_rep", 2
 "sp_3_disp", 30

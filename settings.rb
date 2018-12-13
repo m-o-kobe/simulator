@@ -6,13 +6,19 @@ def params
 		"growth3",#kabuに比例
 		"growth4",#crdに比例
 
-		"death1",#定数
-		"death2",#dbhに比例
-		"death3",#kabuに比例
-		"death4",#crdに比例
+		"death11",#定数
+		"death12",#dbhに比例
+		"death13",#kabuに比例
+		"death14",#crdに比例
 
+		"death21",#定数,山火事
+		"death22",#dbhに比例,山火事
+		"death23",#kabuに比例,山火事
+		"death24",#crdに比例,山火事
+		
 		"kanyu1",#1個体あたりの加入数
 		"kanyu2",#ランダム散布割合(⇔親木の周りに分布)
+		"kanyu3",#山火事の時の1個体あたり加入数
 
 		"kanyu11",#dsを計算する距離限界、親木の周りに分布する場合
 		"kanyu12",#定数、親木の周りに分布
@@ -21,6 +27,10 @@ def params
 		"kanyu21",#dsを計算する距離限界、ランダム
 		"kanyu22",#定数、ランダム
 		"kanyu23",#dsに比例、ランダム
+
+		"kanyu31",#dsを計算する距離限界、山火事後
+		"kanyu32",#定数、山火事後
+		"kanyu33",#dsに比例、山火事後
 
 		"rep",#いらない？
 		"disp", #いらない？

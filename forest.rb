@@ -4,7 +4,6 @@ require "./tree.rb"
 class Forest
 	attr_accessor :trees
 	
-	
 	def initialize( init_array )
 		@year = 0
 		@settings = Settings.new
@@ -29,6 +28,9 @@ class Forest
 	def yearly_activities#成長量･新規･枯死計算
 		reset_counter
 		crdcal
+		if @year%3==0 then
+			fire
+		end
 		trees_grow#下で定義されてる
 		trees_newborn
 		tree_death#下で定義されてる
@@ -52,6 +54,73 @@ class Forest
 		buf.push([@year]+["sinki"]+[@@sinki_count.values])
 
 		return buf
+	end
+	
+	def fire
+		firedeath
+		firesinki
+	end
+	def firedeath
+		sinu=@trees.select{
+			|tree| tree.fire_dead
+		}
+		for spp in 1..@settings.num_sp do
+			@@death_count[spp]+=sinu.count{|item| item.sp==spp}
+		end
+		@trees=@trees-sinu
+
+	end
+	def kakunin
+		puts @@num_count
+		puts @@death_count
+		puts @@sinki_count
+	end
+	def firesinki
+		for spp in 1..@settings.num_sp do
+			oyagi=Array.new
+			oyagi=oyagiselect(spp)
+			oyakazu=oyagi.count
+			kanyuusuu=(oyakazu*@settings.spdata(spp,"kanyu3")).to_i
+			@@sinki_count[spp]+=kanyuusuu
+			for i in 1..kanyuusuu do
+				
+					for j in 1..1000 do
+						oya=rand(oyakazu)-1
+						#親木を選ぶ
+						kyori=rand(0.0..1.0)
+						kaku=rand(0.0..2.0*Math::PI)
+						kouhox=oyagi[oya].x+kyori*Math.sin(kaku)#@x
+						kouhoy=oyagi[oya].y+kyori*Math.cos(kaku)#@y
+						ds=0.0
+						@trees.each do |obj|
+							_dist =((kouhox-obj.x)**2.0+(kouhoy-obj.y)**2.0)**0.5
+							if _dist<@settings.spdata(spp,"kanyu31")&&obj.sp!=spp
+								if _dist==0.0
+									ds+=obj.mysize/0.01
+								else
+									ds+=obj.mysize/_dist
+								end
+							end
+						end
+						kanyu=rand(0.0..1.0)
+						kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu32")-ds*@settings.spdata(spp,"kanyu33")))
+						if kanyu<kanyuritu
+							@trees.push(Tree.new(
+								kouhox,
+								kouhoy,
+								spp,
+								0,#age
+								0.1,#size
+								0,#@tag
+								oyagi[oya].tag,#motherのタグ
+								oyagi[oya].sprout
+								))
+							break
+						end
+					end
+				
+			end
+		end
 	end
 
 
@@ -87,8 +156,9 @@ class Forest
 			oyagi=Array.new
 			oyagi=oyagiselect(spp)
 			oyakazu=oyagi.count
-			@@sinki_count[spp]=(oyakazu*@settings.spdata(spp,"kanyu1")).to_i
-			for i in 1..@@sinki_count[spp] do
+			kanyuusuu=(oyakazu*@settings.spdata(spp,"kanyu1")).to_i
+			@@sinki_count[spp]+=kanyuusuu
+			for i in 1..kanyuusuu do
 				if @settings.spdata(spp,"kanyu2")<=rand(0.0..1.0)
 					for j in 1..1000 do
 						oya=rand(oyakazu)-1
@@ -173,7 +243,7 @@ class Forest
 			|tree| tree.is_dead
 		}
 		for spp in 1..@settings.num_sp do
-			@@death_count[spp]=sinu.count{|item| item.sp==spp}
+			@@death_count[spp]+=sinu.count{|item| item.sp==spp}
 		end
 		@trees=@trees-sinu
 	end

@@ -55,7 +55,13 @@ class Tree
 
 	def is_dead
 		seisi=rand(0.0..1.0)
-		seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death1")-@settings.spdata(@sp,"death2")*@mysize-@settings.spdata(@sp,"death3")*@kabu-@settings.spdata(@sp,"death4")*@crd)))**(1.0/3.0)
+		seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death11")-@settings.spdata(@sp,"death12")*@mysize-@settings.spdata(@sp,"death13")*@kabu-@settings.spdata(@sp,"death14")*@crd)))**(1.0/3.0)
+		return seisi>seizonritu
+	end
+	
+	def fire_dead
+		seisi=rand(0.0..1.0)
+		seizonritu=1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death21")-@settings.spdata(@sp,"death22")*@mysize-@settings.spdata(@sp,"death23")*@kabu-@settings.spdata(@sp,"death24")*@crd))
 		return seisi>seizonritu
 	end
 
