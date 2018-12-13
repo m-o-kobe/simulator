@@ -112,7 +112,7 @@ class Forest
 								kouhoy,
 								spp,
 								0,#age
-								0.1,#size
+								0.0,#size
 								0,#@tag
 								oyagi[oya].tag,#motherのタグ
 								oyagi[oya].sprout
@@ -189,7 +189,7 @@ class Forest
 								kouhoy,
 								spp,
 								0,#age
-								0.1,#size
+								0.0,#size
 								0,#@tag
 								oyagi[oya].tag,#motherのタグ
 								oyagi[oya].sprout
@@ -224,7 +224,7 @@ class Forest
 								kouhoy,
 								spp,
 								0,#age
-								0.1,#size
+								0.0,#size
 								0,#@tag
 								oyagi[rand(oyakazu)-1].tag,#motherのタグ
 								"newsprout"

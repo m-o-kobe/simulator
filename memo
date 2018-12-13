@@ -18,4 +18,4 @@ git commit -m “簡単な説明”
 $ git push origin master
 
 
-ruby kamcha.rb data/testset.csv data/init.csv data/output.csv
+ruby kamcha.rb data/testset.csv data/init.csv data/output.csv data/stat.csv

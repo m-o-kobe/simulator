@@ -47,7 +47,7 @@ class Tree
 
 	def grow
 		gro=@settings.spdata( @sp , "growth1" ) +@settings.spdata( @sp , "growth2" )*@mysize+@settings.spdata(@sp,"growth3")*@kabu+@settings.spdata(@sp,"growth4")*@crd
-		if gro>=0 then
+		if gro>=0&&@age>=5 then
 			@mysize+=gro
 		end
 		@age += 1
