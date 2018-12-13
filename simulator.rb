@@ -12,9 +12,7 @@ class Simulator
         #load_fileはsettings.rbの中で定義されているメソッド
 		@forest = Forest.new( @fileio.read_init)
 		#Forestはforest.rbの中で定義されているクラス
-
 	end
-
 	def run
 		for year in 1..@settings.duration
 			print "Year: ", year, "\n"

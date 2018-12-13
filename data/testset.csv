@@ -1,7 +1,7 @@
 #######################
 #### Common settings
-"plot_x", 10000
-"plot_y", 10000
+"plot_x", 50
+"plot_y", 100
 "duration", 3
 "num_sp", 3
 
@@ -16,7 +16,7 @@
 "sp_1_death3", 0.021695
 "sp_1_death4", 0.049199
 
-"sp_1_kanyu1",1
+"sp_1_kanyu1",0.026502307
 "sp_1_kanyu2",0
 
 "sp_1_kanyu11",3
@@ -41,7 +41,7 @@
 "sp_2_death3", 0.0003945
 "sp_2_death4", 0
 
-"sp_2_kanyu1",1
+"sp_2_kanyu1",0.02174591
 "sp_2_kanyu2",0.5
 
 "sp_2_kanyu11",0
@@ -68,7 +68,7 @@
 "sp_3_death4", 0
 
 
-"sp_3_kanyu1",1
+"sp_3_kanyu1",0.062658569
 "sp_3_kanyu2",0
 
 "sp_3_kanyu11",0

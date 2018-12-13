@@ -16,3 +16,6 @@ testcrdの内容はgithubのfirstcommitではたぶん成長率とかの検証�
 git add -A
 git commit -m “簡単な説明”
 $ git push origin master
+
+
+ruby kamcha.rb data/testset.csv data/init.csv data/output.csv

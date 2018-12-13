@@ -4,6 +4,7 @@ require "./tree.rb"
 class Forest
 	attr_accessor :trees
 	
+	
 	def initialize( init_array )
 		@year = 0
 		@settings = Settings.new
@@ -26,11 +27,22 @@ class Forest
 
 
 	def yearly_activities#成長量･新規･枯死計算
+		reset_counter
 		crdcal
 		trees_grow#下で定義されてる
 		trees_newborn
 		tree_death#下で定義されてる
 		@year += 1
+	end
+	def reset_counter
+		@@num_count=Hash.new
+		@@death_count=Hash.new
+		@@sinki_count=Hash.new
+		for spp in 1..@settings.num_sp do
+			@@num_count[spp]=0
+			@@death_count[spp]=0
+			@@sinki_count[spp]=0
+		end
 	end
 	
 
@@ -48,16 +60,16 @@ class Forest
 
 	def trees_grow
 		@trees.each do | tree |
-			
 			tree.grow
-			
+			@@num_count[tree.sp]+=1
+			puts @@num_count
 		end
 	end
 	
 	def oyagiselect(sp)
 		oyagi=Array.new
 		oyagi=@trees.select{
-				|tree| tree.sp==sp
+				|tree| tree.sp==sp&&tree.mysize>5.0
 			}
 		return oyagi
 	end
@@ -68,8 +80,8 @@ class Forest
 			oyagi=Array.new
 			oyagi=oyagiselect(spp)
 			oyakazu=oyagi.count
-			num_newborn=oyakazu*@settings.spdata(spp,"kanyu1")
-			for i in 1..num_newborn.to_i do
+			@@sinki_count[spp]=(oyakazu*@settings.spdata(spp,"kanyu1")).to_i
+			for i in 1..@@sinki_count[spp] do
 				if @settings.spdata(spp,"kanyu2")<=rand(0.0..1.0)
 					for j in 1..1000 do
 						oya=rand(oyakazu)-1
@@ -163,7 +175,7 @@ class Forest
 				if obj.tag != tar.tag then#obj.num≠target.numberならば･･･
 					_dist =dist(tar, obj)#targetとobjの距離を_distで返す
 					if _dist<9.0
-						if obj.sp==tar.sp&&_dist<1.0
+						if tar.sprout==obj.sprout&&tar.sprout!=0
 							if _dist==0.0
 								tar.kabu+=obj.mysize/0.01
 							else

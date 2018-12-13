@@ -14,6 +14,7 @@ forest=Forest.new([
 p forest
 begin
   Timeout.timeout(30){
+	forest.reset_counter
 	forest.trees_newborn
   }
 rescue Timeout::Error
