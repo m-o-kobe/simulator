@@ -45,6 +45,14 @@ class Forest
 		end
 	end
 	
+	def stat_records
+		buf=Array.new
+		buf.push([@year]+["num"]+[@@num_count.values])
+		buf.push([@year]+["death"]+[@@death_count.values])
+		buf.push([@year]+["sinki"]+[@@sinki_count.values])
+
+		return buf
+	end
 
 
 	def records
@@ -62,7 +70,6 @@ class Forest
 		@trees.each do | tree |
 			tree.grow
 			@@num_count[tree.sp]+=1
-			puts @@num_count
 		end
 	end
 	
@@ -162,11 +169,14 @@ class Forest
 	end
 
 	def tree_death
-		@trees.delete_if{|x| x.is_dead }#死んだらその木を消す
+		sinu=@trees.select{
+			|tree| tree.is_dead
+		}
+		for spp in 1..@settings.num_sp do
+			@@death_count[spp]=sinu.count{|item| item.sp==spp}
+		end
+		@trees=@trees-sinu
 	end
-	
-	#crd,距離ごとにもう少し細かく分けないと加入率計算ができない.
-	
 	def crdcal
 		@trees.each do |tar|
 			tar.crd=0.0

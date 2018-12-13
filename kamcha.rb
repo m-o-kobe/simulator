@@ -9,7 +9,7 @@ if ARGV.size < 3
 	exit
 end
 
-simulator = Simulator.new( ARGV[0], ARGV[1], ARGV[2] )
+simulator = Simulator.new( ARGV[0], ARGV[1], ARGV[2],ARGV[3])
 
 #.newで作成したobjectに対してinitializeメソッドを呼び出し
 begin

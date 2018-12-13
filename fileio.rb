@@ -11,10 +11,11 @@ INIT_SPROUT =6
 
 class Fileio
 
-	def initialize( settings_file, initial_file, out_file )
+	def initialize( settings_file, initial_file, out_file,stat_file)
 		@setfile 	= CSV.open( settings_file, "r" )#settingファイルを読み込みモード
 		@initfile 	= CSV.open( initial_file, "r" )
 	 	@outfile	= File.open( out_file, "w" )#outputファイルに書き込みモード
+	 	@statfile=File.open(stat_file,"w")
 	end
 
 	def read_init
@@ -47,7 +48,11 @@ class Fileio
 			@outfile.print _dat.join(", "),"\n"
 		end
 	end
-	
+	def record_stat(buf_array)
+		buf_array.each do | _dat |
+			@statfile.print _dat.join(", "),"\n"
+		end
+	end
 	def close_out
 		@outfile.close
 	end

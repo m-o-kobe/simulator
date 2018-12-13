@@ -9,8 +9,9 @@ forest=Forest.new([
 	[1,1,1,0,10.0,0],
 	[1,3,1,0,1.0,0]
 	])
-	puts forest
-
+	p forest
+	forest.reset_counter
 	forest.crdcal
 	forest.tree_death
-	puts forest
+	forest.stat_records
+	p forest

@@ -4,8 +4,8 @@ require "./forest.rb"
 
 
 class Simulator
-	def initialize( setting_file, initial_file, output_file )
-		@fileio = Fileio.new( setting_file, initial_file, output_file )
+	def initialize( setting_file, initial_file, output_file,stat_file)
+		@fileio = Fileio.new( setting_file, initial_file, output_file,stat_file )
 		@settings = Settings.new
 		#settingはsetting.rbの中で定義されているクラス
 		@settings.load_file( @fileio.read_settings )
@@ -18,6 +18,7 @@ class Simulator
 			print "Year: ", year, "\n"
 			@forest.yearly_activities#年変動を計算
 			@fileio.record_forest( @forest.records )#output_fileに1年分ずつ出力
+			@fileio.record_stat(@forest.stat_records)
 		end
 	end
 end
