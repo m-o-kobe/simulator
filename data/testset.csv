@@ -4,6 +4,7 @@
 "plot_y", 100
 "duration", 10
 "num_sp", 3
+"firefreq",3
 
 #######################
 ### Sp1 settings(lc)
@@ -102,7 +103,7 @@
 "sp_3_kanyu1",0.062658569
 "sp_3_kanyu2",0
 "sp_3_kanyu3",10
-"sp_3_kanyu4",1.0
+"sp_3_kanyu4",5.0
 
 
 "sp_3_kanyu11",0

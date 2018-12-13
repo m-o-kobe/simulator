@@ -29,13 +29,13 @@ def params
 		"kanyu22",#定数、ランダム
 		"kanyu23",#dsに比例、ランダム
 
-		"kanyu31",#dsを計算する距離限界、山火事後
-		"kanyu32",#定数、山火事後
-		"kanyu33",#dsに比例、山火事後
+		# "kanyu31",#dsを計算する距離限界、山火事後
+		# "kanyu32",#定数、山火事後
+		# "kanyu33",#dsに比例、山火事後
 
-		"rep",#いらない？
-		"disp", #いらない？
-		"juvdeath"#いらない？
+		# "rep",#いらない？
+		# "disp", #いらない？
+		# "juvdeath"#いらない？
 		]
 end
 
@@ -58,6 +58,9 @@ class Settings
 
 		if _setdata[ "duration" ] != nil
 			@@duration = _setdata[ "duration" ].to_i
+		end
+		if _setdata[ "firefreq" ] != nil
+			@@firefreq = _setdata[ "firefreq" ].to_i
 		end
 
 		if _setdata[ "num_sp" ] != nil
@@ -88,6 +91,9 @@ class Settings
 
 	def duration
 		return @@duration
+	end
+	def firefreq
+		return @@firefreq
 	end
 
 	def num_sp

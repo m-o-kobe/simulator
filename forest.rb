@@ -3,6 +3,9 @@ require "./tree.rb"
 
 class Forest
 	attr_accessor :trees
+	@@num_count=Hash.new
+	@@death_count=Hash.new
+	@@sinki_count=Hash.new
 	
 	def initialize( init_array )
 		@year = 0
@@ -26,20 +29,20 @@ class Forest
 
 
 	def yearly_activities#成長量･新規･枯死計算
+		@year += 1
 		reset_counter
 		crdcal
-		if @year%3==0 then
+		if @year%@settings.firefreq==0 then
 			fire
+			crdcal
+		else
+			#下で定義されてる
+			trees_newborn
+			tree_death
 		end
-		trees_grow#下で定義されてる
-		trees_newborn
-		tree_death#下で定義されてる
-		@year += 1
+		trees_grow
 	end
 	def reset_counter
-		@@num_count=Hash.new
-		@@death_count=Hash.new
-		@@sinki_count=Hash.new
 		for spp in 1..@settings.num_sp do
 			@@num_count[spp]=0
 			@@death_count[spp]=0
@@ -94,7 +97,7 @@ class Forest
 						ds=0.0
 						@trees.each do |obj|
 							_dist =((kouhox-obj.x)**2.0+(kouhoy-obj.y)**2.0)**0.5
-							if _dist<@settings.spdata(spp,"kanyu31")&&obj.sp!=spp
+							if _dist<@settings.spdata(spp,"kanyu11")&&obj.sp!=spp
 								if _dist==0.0
 									ds+=obj.mysize/0.01
 								else
@@ -103,7 +106,7 @@ class Forest
 							end
 						end
 						kanyu=rand(0.0..1.0)
-						kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu32")-ds*@settings.spdata(spp,"kanyu33")))
+						kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu12")-ds*@settings.spdata(spp,"kanyu13")))
 						if kanyu<kanyuritu
 							@trees.push(Tree.new(
 								kouhox,
@@ -179,10 +182,8 @@ class Forest
 								end
 							end
 						end
-	
 						kanyu=rand(0.0..1.0)
 						kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu12")-ds*@settings.spdata(spp,"kanyu13")))
-	
 						if kanyu<kanyuritu
 							@trees.push(Tree.new(
 								kouhox,

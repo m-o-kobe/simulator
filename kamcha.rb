@@ -4,8 +4,8 @@ require 'timeout'
 # Fix random numbers: for development purpose
 
 #ARGVはコマンドライン引数の取得
-if ARGV.size < 3
-	STDERR.print "Usage: ruby #{$0} setting_filename initial_filename output_filename\n"
+if ARGV.size < 4
+	STDERR.print "Usage: ruby #{$0} setting_filename initial_filename output_filename stat_filename\n"
 	exit
 end
 
