@@ -4,7 +4,7 @@ require"./forest.rb"
 require"./fileio.rb"
 require 'timeout'
 puts "start"
-fileio = Fileio.new( "data/testset.csv","data/init.csv","data/output.dat")
+fileio = Fileio.new( "data/testset.csv","data/init.csv","data/output.dat","data/output.csv")
 tmp=Settings.new
 tmp.load_file( fileio.read_settings )
 forest=Forest.new([
@@ -15,7 +15,8 @@ p forest
 begin
   Timeout.timeout(30){
 	forest.reset_counter
-	forest.trees_newborn
+	forest.firesinki
+	forest.kakunin
   }
 rescue Timeout::Error
   puts "timeout"

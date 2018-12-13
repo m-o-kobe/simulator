@@ -87,7 +87,7 @@ class Forest
 					for j in 1..1000 do
 						oya=rand(oyakazu)-1
 						#親木を選ぶ
-						kyori=rand(0.0..1.0)
+						kyori=rand(0.0..1.0)*@settings.spdata(spp,"kanyu4")
 						kaku=rand(0.0..2.0*Math::PI)
 						kouhox=oyagi[oya].x+kyori*Math.sin(kaku)#@x
 						kouhoy=oyagi[oya].y+kyori*Math.cos(kaku)#@y
@@ -163,7 +163,7 @@ class Forest
 					for j in 1..1000 do
 						oya=rand(oyakazu)-1
 						#親木を選ぶ
-						kyori=rand(0.0..1.0)
+						kyori=rand(0.0..1.0)*@settings.spdata(spp,"kanyu4")
 						kaku=rand(0.0..2.0*Math::PI)
 						kouhox=oyagi[oya].x+kyori*Math.sin(kaku)#@x
 						kouhoy=oyagi[oya].y+kyori*Math.cos(kaku)#@y
