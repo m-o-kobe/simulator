@@ -6,7 +6,7 @@ pdf(outfile, paper ="a4", pointsize=18)
 
 buf<-read.csv(filename, header=F)
 all_years<-sort(unique(buf$V1))
-sp<-c("Larix", "Betula", "Poplus")
+sp<-c("Larix cajanderi", "Betula platyphylla", "Populus tremula")
 
 for (year in all_years){
 	dat<-subset(buf, V1==year)

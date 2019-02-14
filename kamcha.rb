@@ -2,6 +2,7 @@ require "./simulator.rb"
 require 'timeout'
 ######################
 # Fix random numbers: for development purpose
+Encoding.default_external = 'utf-8'
 
 #ARGVはコマンドライン引数の取得
 if ARGV.size < 4
@@ -13,7 +14,7 @@ simulator = Simulator.new( ARGV[0], ARGV[1], ARGV[2],ARGV[3])
 
 #.newで作成したobjectに対してinitializeメソッドを呼び出し
 begin
-  Timeout.timeout(30){
+  Timeout.timeout(1800){
  simulator.run
   }
 rescue Timeout::Error

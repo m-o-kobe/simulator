@@ -161,7 +161,7 @@ class Forest
 			kanyuusuu=(oyakazu*@settings.spdata(spp,"kanyu1")).to_i
 			@@sinki_count[spp]+=kanyuusuu
 			for i in 1..kanyuusuu do
-				if @settings.spdata(spp,"kanyu2")<=rand(0.0..1.0)
+				if @settings.spdata(spp,"kanyu2")<=rand(0.0..1.0)#加入場所がランダムか親木の周りかの決定
 					for j in 1..1000 do
 						oya=rand(oyakazu)-1
 						#親木を選ぶ

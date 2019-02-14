@@ -2,24 +2,24 @@
 #### Common settings
 "plot_x", 50
 "plot_y", 100
-"duration", 10
+"duration", 100
 "num_sp", 3
-"firefreq",3
+"firefreq",1000
 
 #######################
 ### Sp1 settings(lc)
 
 #根拠あり
-"sp_1_growth1",0.8831486
-"sp_1_growth2",-0.0157003
+"sp_1_growth1",0.2929574
+"sp_1_growth2",-0.0052073
 "sp_1_growth3",0
-"sp_1_growth4",-0.0039146
+"sp_1_growth4",-0.0012914
 
 #根拠あり
-"sp_1_death11", 0.3318467
-"sp_1_death12", 0.0039107
-"sp_1_death13", 0.0053653
-"sp_1_death14",
+"sp_1_death11",-1.631447
+"sp_1_death12", 0
+"sp_1_death13", 0
+"sp_1_death14",0.045912
 
 #山火事時、調べる必要がある
 "sp_1_death21", 0
@@ -28,7 +28,7 @@
 "sp_1_death24", 0
 
 #各種加入率fileを根拠に算出
-"sp_1_kanyu1",0.53278837
+"sp_1_kanyu1",0.913830362
 
 "sp_1_kanyu2",0
 
@@ -40,22 +40,22 @@
 
 #根拠ありだが1.3m以下を無視
 "sp_1_kanyu11",3
-"sp_1_kanyu12",0.0894284
-"sp_1_kanyu13",-0.0012698
+"sp_1_kanyu12",-2.30063
+"sp_1_kanyu13",-0.02808
 
 
 ### Sp2 settings(bp)
 #株立ち計算済み
-"sp_2_growth1",0.2065
-"sp_2_growth2",-0.07484
-"sp_2_growth3",0.00005062
+"sp_2_growth1",0.086865
+"sp_2_growth2",0
+"sp_2_growth3",0
 "sp_2_growth4",0
 
 #株立ち計算済み
-"sp_2_death11", 0.933619
-"sp_2_death12", -0.007809
-"sp_2_death13", 0
-"sp_2_death14", 0
+"sp_2_death11", 2.1473006
+"sp_2_death12", -0.0712816
+"sp_2_death13", 0.0004322
+"sp_2_death14", 0.0056164
 
 #山火事のとき　ひとまず保留
 "sp_2_death21", 0
@@ -64,9 +64,9 @@
 "sp_2_death24", 0
 
 各種加入率fileを根拠に算出
-"sp_2_kanyu1",0.275205502
+"sp_2_kanyu1",0.24007571
 
-"sp_2_kanyu2",0.25
+"sp_2_kanyu2",0.2365
 "sp_2_kanyu3",0.968232044
 "sp_2_kanyu4",1.0
 
@@ -87,8 +87,8 @@
 "sp_3_growth4",0
 
 #根拠ありだが1.3m以下を無視
-"sp_3_death11", 3.012261576
-"sp_3_death12", 0
+"sp_3_death11", 4.14252
+"sp_3_death12", -0.17125
 "sp_3_death13", 0
 "sp_3_death14", 0
 
@@ -99,14 +99,14 @@
 "sp_3_death24", 0
 
 各種加入率fileを根拠に算出
-"sp_3_kanyu1",6.090330886
+"sp_3_kanyu1",5.962143539
 
 #根拠なし
 "sp_3_kanyu2",0
 #根拠ありだが数年分まとめてる？
 "sp_3_kanyu3",87.70968
 #根拠なし
-"sp_3_kanyu4",5.0
+"sp_3_kanyu4",1.0
 
 #根拠あり(というかほぼ定数)
 "sp_3_kanyu11",0
