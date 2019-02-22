@@ -14,7 +14,7 @@ simulator = Simulator.new( ARGV[0], ARGV[1], ARGV[2],ARGV[3])
 
 #.newで作成したobjectに対してinitializeメソッドを呼び出し
 begin
-  Timeout.timeout(1800){
+  Timeout.timeout(600){
  simulator.run
   }
 rescue Timeout::Error

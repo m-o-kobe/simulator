@@ -34,8 +34,7 @@ df <- data.frame(matrix(rep(NA, n), nrow=1))[numeric(0), ]
 
     chartmap<-ggplot(df,aes(x=dbh,y=num,fill=sp))
     charttype<-geom_bar(stat="identity", position = "dodge")
-    axis<-scale_y_log10()
     label<-labs(title=paste(title1,"Year: ",year))
-    g<-chartmap+charttype+label+axis
+    g<-chartmap+charttype+label
     print(g)
 }

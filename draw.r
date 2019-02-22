@@ -20,7 +20,8 @@ for (year in all_years){
 	scale_radius(name="DBH", breaks=seq(0,50,by=10),limits=c(0,50),range=c(0,15))+
 	scale_x_continuous(breaks=seq(0,50,by=10), limits=c(-2,52))+
 	scale_y_continuous(breaks=seq(0,100,by=10), limits=c(-2,102))+
-	scale_colour_discrete(drop=FALSE)
+	scale_colour_discrete(drop=FALSE)+
+	scale_color_manual(values = c("Larix cajanderi"="#58BE89","Betula platyphylla"="#FBA848","Populus tremula"="#40AAEF"))
 
 	print( output )
 	#ggsave("output.pdf", plot=output, width=210, height=297, units= "mm")

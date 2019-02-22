@@ -100,7 +100,7 @@ class Settings
 		return @@plot_y
 	end
 
-	def spdata( i, key )
-		return @@spdata[i][ key ]
+	def spdata(i,key)
+		return @@spdata[i][key]
 	end
 end

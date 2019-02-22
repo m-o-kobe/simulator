@@ -55,7 +55,12 @@ class Tree
 
 	def is_dead
 		seisi=rand(0.0..1.0)
-		seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death11")-@settings.spdata(@sp,"death12")*@mysize-@settings.spdata(@sp,"death13")*@kabu-@settings.spdata(@sp,"death14")*@crd)))**(1.0/3.0)
+		if @age<5&&@sp==3 then
+			seizonritu=0.122
+		else
+			seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death11")-@settings.spdata(@sp,"death12")*@mysize-@settings.spdata(@sp,"death13")*@kabu-@settings.spdata(@sp,"death14")*@crd)))**(1.0/3.0)
+		end
+
 		return seisi>seizonritu
 	end
 	
