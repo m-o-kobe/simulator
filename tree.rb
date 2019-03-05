@@ -11,7 +11,7 @@ class Tree
 				:tag, 
 				:mother,
 				:crd,
-				:kabu,
+				:sc,
 				:sprout
 # Newborn tags: Change if the initial data has >10000 trees
 	@@tag = 10001
@@ -26,7 +26,7 @@ class Tree
 		@mysize = _mysize
 		@mother = _mother
 		@crd=0.0
-		@kabu=0.0
+		@sc=0.0
 		#tagは木の一本ずつに振ってある番号
 		if _tag != 0 then
 			@tag = _tag
@@ -46,33 +46,36 @@ class Tree
 	end
 
 	def grow
-		gro=@settings.spdata( @sp , "growth1" ) +@settings.spdata( @sp , "growth2" )*@mysize+@settings.spdata(@sp,"growth3")*@kabu+@settings.spdata(@sp,"growth4")*@crd
+		gro=@settings.spdata( @sp , "growth1" )+
+			@settings.spdata( @sp , "growth2" )*@mysize+
+			@settings.spdata(@sp,"growth3")*@sc+
+			@settings.spdata(@sp,"growth4")*@crd
 		if gro>=0&&@age>=5 then
 			@mysize+=gro
 		end
 		@age += 1
 	end
 
-	def is_dead
-		seisi=rand(0.0..1.0)
-		if @age<5&&@sp==3 then
-			seizonritu=0.122
+	def is_dead(fire)
+		if fire=="fire"
+			para=["death11","death12","death13","death14","death15",1.0/3.0]
+		elsif fire=="normal"
+			para=["death21","death22","death23","death24","death25",1.0]
+		end	
+		if @age<5 then
+			deathrate=@settings.spdata(@sp,para[4])
 		else
-			seizonritu=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death11")-@settings.spdata(@sp,"death12")*@mysize-@settings.spdata(@sp,"death13")*@kabu-@settings.spdata(@sp,"death14")*@crd)))**(1.0/3.0)
+			deathrate=(1.0/(1.0+Math::exp(-@settings.spdata(@sp,para[0])-
+				@settings.spdata(@sp,para[1])*@mysize-
+				@settings.spdata(@sp,para[2])*@sc-
+				@settings.spdata(@sp,para[3])*@crd)))**para[5]
 		end
 
-		return seisi>seizonritu
+		return rand(0.0..1.0)>deathrate
 	end
 	
-	def fire_dead
-		seisi=rand(0.0..1.0)
-		seizonritu=1.0/(1.0+Math::exp(-@settings.spdata(@sp,"death21")-@settings.spdata(@sp,"death22")*@mysize-@settings.spdata(@sp,"death23")*@kabu-@settings.spdata(@sp,"death24")*@crd))
-		return seisi>seizonritu
-	end
-
-
 	def record
-		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@kabu,@sprout ] 
+		return [ @x, @y, @sp, @age, @mysize, @tag, @mother,@crd,@sc,@sprout ] 
 	end
 
 	##############################
