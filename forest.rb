@@ -24,8 +24,6 @@ class Forest
 				) )#Treeクラスはtree.rbで定義
 		end
 	end
-
-
 	def yearly_activities#成長量･新規･枯死計算
 		@year += 1
 		reset_counter
@@ -96,82 +94,158 @@ class Forest
 			}
 		return parent_tree
 	end
-
 	def trees_newborn(fire)
-		for spp in 1..@settings.num_sp do
-			if fire=="fire"
-				para=["kanyu3","kamyu5"]
-			elsif fire=="normal"
-				para=["kanyu1","kanyu2"]
-			end	
-
-			parent_tree=Array.new
-			parent_tree=parent_select(spp)
-			parent_num=parent_tree.count
-			kanyuusuu=(parent_num*@settings.spdata(spp,para[0])).to_i
-			@@recruit_count[spp]+=kanyuusuu
-			for i in 1..kanyuusuu do
-				if @settings.spdata(spp,para[1])<=rand(0.0..1.0)#加入場所がランダムか親木の周りかの決定
-					around_parent(spp,parent_tree,parent_num)
-				else
-					random_newborn(spp,parent_tree,parent_num)
+		larix_recruit(fire)
+		betula_recruit(fire)
+		populus_recruit(fire)
+	end
+	def larix_recruit(fire)
+		if fire=="fire"
+			para=["kanyu3","kamyu5"]
+		elsif fire=="normal"
+			para=["kanyu1","kanyu2"]
+		end
+		parent_trees=Array.new
+		parent_trees=parent_select(1)
+		parent_trees.each do |parent|
+			recruit_expect=(parent.mysize*@settings.spdata(1,para[0]))
+			recruit_number=expect(recruit_expect)
+			@@recruit_count[1]+=recruit_number
+			if recruit_number>0 then
+				for i in 1..recruit_number do
+					random_newborn(1,parent)
 				end
 			end
 		end
 	end
-
-	def around_parent(spp,parent_tree,parent_num)
-		for j in 1..1000 do
-			selected_parent=rand(parent_num)-1
-			#親木を選ぶ
-			distance=rand(0.0..1.0)*@settings.spdata(spp,"kanyu4")
-			angle=rand(0.0..2.0*Math::PI)
-			cand_x=parent_tree[selected_parent].x+distance*Math.sin(angle)#@x
-			cand_y=parent_tree[selected_parent].y+distance*Math.cos(angle)#@y
-			ds=0.0
-			@trees.each do |obj|
-				_dist =((cand_x-obj.x)**2.0+(cand_y-obj.y)**2.0)**0.5
-				if _dist<@settings.spdata(spp,"kanyu11")&&obj.sp!=spp
-					if _dist==0.0
-						ds+=obj.mysize/0.01
-					else
-						ds+=obj.mysize/_dist
-					end
+	def populus_recruit(fire)
+		if fire=="fire"
+			para=["kanyu3","kamyu5","kanyu6"]
+		elsif fire=="normal"
+			para=["kanyu1","kanyu2","kanyu7"]
+		end
+		parent_trees=Array.new
+		parent_trees=parent_select(3)
+		parent_trees.each do |parent|
+			recruit_expect=(parent.mysize*@settings.spdata(3,para[0]))
+			recruit_number=expect(recruit_expect)
+			@@recruit_count[3]+=recruit_number
+			if recruit_number>0 then
+				for i in 1..recruit_number do
+					random_newborn(3,parent)
 				end
-			end
-			kanyu=rand(0.0..1.0)
-			kanyuritu=1.0/(1.0+Math::exp(-@settings.spdata(spp,"kanyu12")-ds*@settings.spdata(spp,"kanyu13")))
-			if kanyu<kanyuritu
-				@trees.push(Tree.new(
-					cand_x,
-					cand_y,
-					spp,
-					0,#age
-					0.0,#size
-					0,#@tag
-					parent_tree[selected_parent].tag,#motherのタグ
-					parent_tree[selected_parent].sprout
-					))
-				break
 			end
 		end
 	end
-	def random_newborn(spp,parent_tree,parent_num)
+	def betula_recruit(fire)
+		if fire=="fire"
+			para=["kanyu3","kamyu5"]
+		elsif fire=="normal"
+			para=["kanyu1","kanyu2"]
+		end
+		parent_trees=Array.new
+		parent_trees=parent_select(2)
+		parent_trees.each do |parent|
+			####実生更新####
+			seed_recruit_expect=(parent.mysize*@settings.spdata(2,para[0]))
+			seed_recruit_number=expect(seed_recruit_expect)
+			@@recruit_count[2]+=seed_recruit_number
+			if seed_recruit_number>0 then
+				for i in 1..seed_recruit_number do
+					random_newborn(2,parent)
+				end
+			end
+			####株立ち更新####
+			sprout_recruit_expect=(parent.mysize*@settings.spdata(2,para[0]))
+			sprout_recruit_number=expect(sprout_recruit_expect)
+			@@recruit_count[2]+=sprout_recruit_number
+			if sprout_recruit_number>0 then
+				for i in 1..sprout_recruit_number do
+					around_parent(2,parent)
+				end
+			end
+
+		end
+	end
+	def expect(a)
+	    b=1.0/(a+1.0)
+	    for i in 0..1000 do
+	        
+	        if rand(0.0..1.0)<b
+	            break
+	        end
+	    end
+	    return i
+	end
+
+	# def trees_newborn(fire)
+	# 	for spp in 1..@settings.num_sp do
+	# 		if fire=="fire"
+	# 			para=["kanyu3","kamyu5"]
+	# 		elsif fire=="normal"
+	# 			para=["kanyu1","kanyu2"]
+	# 		end	
+
+	# 		parent_tree=Array.new
+	# 		parent_tree=parent_select(spp)
+	# 		parent_num=parent_tree.count
+	# 		kanyuusuu=(parent_num*@settings.spdata(spp,para[0])).to_i
+	# 		@@recruit_count[spp]+=kanyuusuu
+	# 		for i in 1..kanyuusuu do
+	# 			if @settings.spdata(spp,para[1])<=rand(0.0..1.0)#加入場所がランダムか親木の周りかの決定
+	# 				around_parent(spp,parent_tree,parent_num)
+	# 			else
+	# 				random_newborn(spp,parent_tree,parent_num)
+	# 			end
+	# 		end
+	# 	end
+	# end
+
+	def around_parent(spp,parent)
+		distance=rand(0.0..1.0)*@settings.spdata(spp,"kanyu4")
+		angle=rand(0.0..2.0*Math::PI)
+		cand_x=parent.x+distance*Math.sin(angle)#@x
+		cand_y=parent.y+distance*Math.cos(angle)#@y
+		ds=0.0
+		@trees.push(Tree.new(
+			cand_x,
+			cand_y,
+			spp,
+			0,#age
+			0.0,#size
+			0,#@tag
+			parent.tag,#motherのタグ
+			parent.sprout
+			))
+	end
+	def random_newborn(spp,parent)
 		for j in 1..1000 do
 			cand_x=rand(0.0..@settings.plot_x)
 			cand_y=rand(0.0..@settings.plot_y)#@y
 			ds=0.0
+			ss=0.0
 			@trees.each do |obj|
 				_dist =((cand_x-obj.x)**2.0+(cand_y-obj.y)**2.0)**0.5
-				if _dist<@settings.spdata(spp,"kanyu21")&&obj.sp!=spp
-					if _dist==0.0
-						ds+=obj.mysize/0.01
-					else
-						ds+=obj.mysize/_dist
+				if obj.sp!=spp then
+					if _dist<@settings.spdata(spp,"kanyu21")
+						if _dist==0.0
+							ds+=obj.mysize/0.01
+						else
+							ds+=obj.mysize/_dist
+						end
+					end
+				elsif obj.sp==spp
+					if _dist<@settings.spdata(spp,"kanyu24")
+						if _dist==0.0
+							ss+=obj.mysize/0.01
+						else
+							ss+=obj.mysize/_dist
+						end
 					end
 				end
 			end
 			kanyuritu=1.0/(1.0+Math::exp(-ds*@settings.spdata(spp,"kanyu22")-
+			ss*@settings.spdata(spp,"kanyu22")-
 			@settings.spdata(spp,"kanyu23")))
 			if rand(0.0..1.0)<kanyuritu
 				@trees.push(Tree.new(
@@ -181,7 +255,7 @@ class Forest
 					0,#age
 					0.0,#size
 					0,#@tag
-					parent_tree[rand(parent_num)-1].tag,#motherのタグ
+					parent.tag,#motherのタグ
 					"newsprout"
 					))
 				break
